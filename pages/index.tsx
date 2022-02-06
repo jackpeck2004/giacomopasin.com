@@ -1,61 +1,69 @@
 import { NextPage } from 'next'
 import styled from '@emotion/styled'
 import type { Theme } from 'lib/decl'
-import Image from "next/image"
+import Image from 'next/image'
+import { ArrowDownIcon } from "@heroicons/react/outline";
 
-const Container = styled('div')`
-  height: 100vh;
+const Title = styled('h1')`
+  font-size: 4rem;
+  font-weight: bold;
+  line-height: 4rem;
+  text-align: center;
+`
+
+const Description = styled.p`
+  text-align: center;
+  margin-top: 2rem;
+`
+
+const IndexWrapper = styled.div`
   width: 100vw;
-  background: ${(props: { theme: Theme }) => props.theme.colors.background};
-  color: ${(props: { theme: Theme }) => props.theme.colors.primary};
-  width: clamp(16rem, 90vw, 80rem);
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-
-  h1 {
-    font-size: 4rem;
-    font-weight: bold;
-  }
-
-  p {
-    font-size: 2rem;
-  }
-`
-
-const Hero = styled('div')`
   height: 100vh;
+  display: grid;
+  place-items: center;
+`
+
+const Container = styled.div``
+const ImageWrapper = styled.div`
+  display: none;`
+
+const CTA = styled.span`
+  position: absolute;
+  bottom: 32px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  color: ${props => props.theme.colors.secondary};
+  cursor: pointer;
+
+  &:hover {
+    color: ${props => props.theme.colors.primary};
+  }
 `
 
-const Description = styled('div')`
-  width: clamp(16rem, 70%, 60rem);
-`
-
-const ImageDiv = styled('div')`
-  width: 20rem;
-  height: 20rem;
-  background: red;
+const DownArrow = styled(ArrowDownIcon)`
+  
 `
 
 const IndexPage: NextPage = () => {
   return (
-    <Container>
-      <Hero>
+    <>
+    <IndexWrapper>
+      <Container>
+        <ImageWrapper>
+          <Image src="/memoji.png" height={400} width={400} />
+        </ImageWrapper>
+        <Title>
+          Hi, <br /> I&apos;m Jack
+        </Title>
         <Description>
-          <h1>Hi, I&apos;m Jack</h1>
-          <p>
-            I currently am an IB student at the{' '}
-            <b>International School of Talents - Multicampus</b> and the CTO of{' '}
-            <b>T.W.I.N srl</b>
-          </p>
+          I currently am an IB student at the{' '}
+          <b>International School of Talents - Multicampus</b> and the CTO of{' '}
+          <b>T.W.I.N srl</b>
         </Description>
-          <Image src="/memoji.png" height={400} width={400}/>
-      </Hero>
-    </Container>
+      </Container>
+      <CTA><span>Learn more</span><DownArrow height={30} /></CTA>
+    </IndexWrapper>
+    </>
   )
 }
 
